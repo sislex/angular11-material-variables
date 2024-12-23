@@ -1,0 +1,30 @@
+@import '@angular/material/theming';
+
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink);
+$warn: mat-palette($mat-red);
+
+$palettes: (
+  'primary': $primary,
+  'accent': $accent,
+  'warn': $warn,
+);
+
+@debug $warn;
+
+@each $palette-name, $palette in $palettes {
+  @each $shade, $color in $palette {
+
+    @if (type-of($color) == 'color') {
+      @debug ".color-#{$palette-name}-#{$shade}: #{$color}";
+
+      .color-#{$palette-name}-#{$shade} {
+        --color-name: "#{$palette-name}-#{$shade}";
+        --color-value: #{$color};
+        background-color: #{$color};
+      }
+    } @else {
+      @warn "Неверный формат цвета для #{$palette-name}-#{$shade}: ";
+    }
+  }
+}
