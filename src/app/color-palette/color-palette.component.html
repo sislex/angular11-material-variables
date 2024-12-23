@@ -1,0 +1,11 @@
+<div class="primary">
+  Test text
+</div>
+
+<div *ngFor="let palette of palettes">
+  <div *ngFor="let shade of shades">
+    <div class="color-{{ palette }}-{{ shade }}">
+      <p>Class name: <b>.color-{{ palette }}-{{ shade }}</b></p>
+    </div>
+  </div>
+</div>

@@ -10,18 +10,17 @@ $palettes: (
   'warn': $warn,
 );
 
-@debug $warn;
-
 @each $palette-name, $palette in $palettes {
   @each $shade, $color in $palette {
 
     @if (type-of($color) == 'color') {
-      @debug ".color-#{$palette-name}-#{$shade}: #{$color}";
+      //@debug ".color-#{$palette-name}-#{$shade}: #{$color}";
 
       .color-#{$palette-name}-#{$shade} {
         --color-name: "#{$palette-name}-#{$shade}";
         --color-value: #{$color};
         background-color: #{$color};
+        color: mat-contrast($palette, $shade);
       }
     } @else {
       @warn "Неверный формат цвета для #{$palette-name}-#{$shade}: ";
